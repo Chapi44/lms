@@ -3,7 +3,6 @@ const router = express.Router();
 const multer = require('multer');
 const courseController = require('../controller/courseController');
 const path = require('path');
-
 const {
   authenticateUser,
   authorizePermissions,
@@ -15,13 +14,31 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/course/');
   },
   filename: function (req, file, cb) {
+    // Rename the file to include the fieldname and timestamp
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(
       null,
-      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+      file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)
     );
   },
 });
+
 const upload = multer({ storage: storage });
+
+// Route to create a new course
+router.post('/', upload.fields([{ name: 'images', maxCount: 6 }, { name: 'coverpage', maxCount: 1 }]), courseController.createCourse);
+
+module.exports = router;
+
+// Route to create a new course
+router.post('/', upload.fields([{ name: 'images', maxCount: 6 }, { name: 'coverpage', maxCount: 1 }]), courseController.createCourse);
+
+module.exports = router;
+
+// Route to create a new course
+router.post('/', upload.array('images', 6), courseController.createCourse);
+
+module.exports = router;
 
 // Route to create a new course
 router.post(

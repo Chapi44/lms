@@ -16,11 +16,11 @@ const CourseSchema = mongoose.Schema({
     youtubeVideo: {
         type: String,
     }, 
-    file: {
+    files: {
         type: [
             {
-                lessonTitle: String,
-                filePath: String,
+                lesson: String,
+                files: [String]
             }
         ],
         default: [],
@@ -40,6 +40,17 @@ const CourseSchema = mongoose.Schema({
     },
     duration: {
         type: Number,
+    },
+    pricetype:{
+        type: String,
+        enum: ['free', 'paid']
+
+    },
+    catagorie:{
+        type: [String],
+    },
+    coverpage:{
+        type: [String] // Assuming coverpage should contain URLs of cover page images
     },
     language: {
         type: String,
