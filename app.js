@@ -29,6 +29,8 @@ app.use("/api/v1/users", userRouter);
 app.use('/api/v1/course',courseRoutes)
 app.use('/api/v1/Instruct',InstructorRoutes);
 
+
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
