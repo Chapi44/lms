@@ -41,6 +41,7 @@ router.get('/:id', courseController.getCourseById);
 router.put(
   '/:id',
   upload.array('images', 6),
+  authenticateUser,
 
   courseController.updateCourseById
 );
@@ -48,7 +49,7 @@ router.put(
 // Route to delete a course by ID
 router.delete(
   '/:id',
-
+authenticateUser,
   courseController.deleteCourseById
 );
 

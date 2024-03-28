@@ -16,10 +16,15 @@ const CourseSchema = mongoose.Schema({
     youtubeVideo: {
         type: String,
     }, 
-    images: {
-        type: [String],
+    file: {
+        type: [
+            {
+                lessonTitle: String,
+                filePath: String,
+            }
+        ],
         default: [],
-        required: [true, "Please provide at least 6 images"]
+        required: [true, "Please provide file"]
     },
     contentText: {
         type: String,
@@ -45,11 +50,6 @@ const CourseSchema = mongoose.Schema({
     coursetags: {
         type: String,
     },
-    // user: {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'User',
-    //     required: true,
-    // },
 }, { timestamps: true });
 
 CourseSchema.virtual("reviews", {

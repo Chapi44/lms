@@ -19,11 +19,10 @@ const register = async (req, res) => {
 
     const user = await User.create({
       fullname,
-      position,
       email,
       password,
       role,
-      api_permission,
+ 
     });
     const Users = await user.save(user);
     // const tokenUser = createTokenUser(user);
@@ -53,7 +52,7 @@ const registerUser = async (req, res) => {
      fullname,
       email,
       password,
-      phonenumber,
+   
       role,
     });
 
